@@ -1,7 +1,6 @@
 -- 4.1
-halve :: [a] -> ([a],[a])
-halve xs = (take n xs, drop n xs)
-           where n = (length xs) `div` 2
+halve :: [a] -> ([a], [a])
+halve xs = (take n xs, drop n xs) where n = (length xs) `div` 2
 -- 4.2
 third :: [a] -> a
 third xs = head (tail (tail xs))
@@ -25,9 +24,9 @@ safetail xs = if null xs then xs else tail xs
 
 -- 4.4
 oder :: Bool -> Bool -> Bool
-True `oder` True = True
-True `oder` False = True
-False `oder` True = True
+True  `oder` True  = True
+True  `oder` False = True
+False `oder` True  = True
 False `oder` False = False
 
 -- True `oder` _ = True
@@ -54,11 +53,8 @@ mult = \x -> (\y -> (\z -> x * y * z))
 
 -- 4.8
 luhnDouble :: Int -> Int
-luhnDouble x = if y > 9 then y - 9 else y
-               where
-                   y = x * 2
+luhnDouble x = if y > 9 then y - 9 else y where y = x * 2
 
 luhn :: Int -> Int -> Int -> Int -> Bool
 luhn a b c d = x `mod` 10 == 0
-               where
-                   x = (luhnDouble a) + b + (luhnDouble c) + d
+  where x = (luhnDouble a) + b + (luhnDouble c) + d

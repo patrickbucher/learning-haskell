@@ -1,15 +1,15 @@
 -- 3.1
 a :: [Char]
-a = ['a','b','c']
+a = ['a', 'b', 'c']
 
 b :: (Char, Char, Char)
-b = ('a','b','c')
+b = ('a', 'b', 'c')
 
 c :: [(Bool, Char)]
-c = [(False, '0'),(True, '1')]
+c = [(False, '0'), (True, '1')]
 
 d :: ([Bool], [Char])
-d = ([False, True],['0', '1'])
+d = ([False, True], ['0', '1'])
 
 e :: [[t] -> [t]]
 e = [tail, init, reverse]
@@ -19,7 +19,7 @@ bools :: [Bool]
 bools = [True, False]
 
 nums :: [[Int]]
-nums = [[1,2,3],[4,5,6],[7,8,9]]
+nums = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 add :: Int -> Int -> Int -> Int
 add x y z = x + y + z
@@ -41,7 +41,7 @@ pair :: a -> b -> (a, b)
 pair x y = (x, y)
 
 double :: Num a => a -> a
-double x = x*2
+double x = x * 2
 
 palindrome :: Eq a => [a] -> Bool
 palindrome xs = reverse xs == xs
