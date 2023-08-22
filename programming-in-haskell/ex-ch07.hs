@@ -91,3 +91,22 @@ transmit = decode . channel . encode
 
 channel :: [Bit] -> [Bit]
 channel = id
+
+-- 7.8
+faulty_channel :: [Bit] -> [Bit]
+faulty_channel = tail
+
+faulty_transmit :: String -> String
+faulty_transmit = decode . faulty_channel . encode
+
+-- 7.9
+altMap :: (a -> b) -> (a -> b) -> [a] -> [b]
+altMap f g []       = []
+altMap f g (x : xs) = f x : altMap g f xs
+
+-- 7.10
+luhn :: [Int] -> Bool
+luhn numbers = sum (altMap id luhnDouble (reverse numbers)) `mod` 10 == 0
+
+luhnDouble :: Int -> Int
+luhnDouble x = if y > 9 then y - 9 else y where y = 2 * x
