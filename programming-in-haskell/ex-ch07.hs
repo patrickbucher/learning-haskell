@@ -1,3 +1,5 @@
+import           Data.Char
+
 -- 7.1
 f x = x * 2
 p x = x `mod` 2 == 0
@@ -44,7 +46,48 @@ uncurry' f = \(x, y) -> f x y
 unfold p h t x | p x       = []
                | otherwise = h x : unfold p h t (t x)
 
-int2bin = unfold (== 0) (`mod` 2) (`div` 2)
-chop8 = unfold null (take 8) (drop 8)
+int2bin' = unfold (== 0) (`mod` 2) (`div` 2)
+chop8' = unfold null (take 8) (drop 8)
 map'' f = unfold null (f . head) tail
 iterate' f = unfold (\_ -> False) id f
+
+-- 7.7
+type Bit = Int
+
+bin2int :: [Bit] -> Int
+bin2int = foldr (\x y -> x + 2 * y) 0
+
+int2bin :: Int -> [Bit]
+int2bin 0 = []
+int2bin n = n `mod` 2 : int2bin (n `div` 2)
+
+make8 :: [Bit] -> [Bit]
+make8 bits = take 8 (bits ++ repeat 0)
+
+encode :: String -> [Bit]
+encode = concat . map (parity . make8 . int2bin . ord)
+
+parity :: [Bit] -> [Bit]
+parity bits = bits ++ [sum bits `mod` 2]
+
+chopn :: Int -> [Bit] -> [[Bit]]
+chopn 0 _    = []
+chopn _ []   = []
+chopn n bits = take n bits : chopn n (drop n bits)
+
+decode :: [Bit] -> String
+decode = map (chr . bin2int . strip_parity) . chopn 9
+
+strip_parity :: [Bit] -> [Bit]
+strip_parity bits = if sum payload `mod` 2 == parity_bit
+  then payload
+  else error "parity check failed"
+ where
+  payload    = take 8 bits
+  parity_bit = last bits
+
+transmit :: String -> String
+transmit = decode . channel . encode
+
+channel :: [Bit] -> [Bit]
+channel = id
