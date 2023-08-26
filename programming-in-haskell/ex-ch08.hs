@@ -148,3 +148,27 @@ p5 = Or (Var 'A') (Not (Var 'A'))
 
 p6 :: Prop
 p6 = Equiv (And (Not (Var 'A')) (Not (Var 'B'))) (Not (Or (Var 'A') (Var 'B')))
+
+-- 8.9
+data Expression = Value Int
+                | Addition Expression Expression
+                | Multiplication Expression Expression
+
+value :: Expression -> Int
+value e = evaluate e []
+
+type Cont = [Op]
+
+data Op = EVAL_ADD Expression | EVAL_MUL Expression | ADD Int | MUL Int
+
+evaluate :: Expression -> Cont -> Int
+evaluate (Value n           ) c = execute c n
+evaluate (Addition       x y) c = evaluate x (EVAL_ADD y : c)
+evaluate (Multiplication x y) c = evaluate x (EVAL_MUL y : c)
+
+execute :: Cont -> Int -> Int
+execute []               n = n
+execute (EVAL_ADD y : c) n = evaluate y (ADD n : c)
+execute (EVAL_MUL y : c) n = evaluate y (MUL n : c)
+execute (ADD      n : c) m = execute c (n + m)
+execute (MUL      n : c) m = execute c (n * m)
