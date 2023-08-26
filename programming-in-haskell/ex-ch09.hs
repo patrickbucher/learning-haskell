@@ -28,3 +28,35 @@ occurs x (Node l y r) = case compare x y of
   GT -> occurs x r
 -- Unlike the original definition, only one side of the tree is
 -- processed if x and y are not equal.
+
+-- 8.3
+data BinaryTree a = BinaryLeaf a | BinaryNode (BinaryTree a) (BinaryTree a)
+
+leafs :: BinaryTree a -> Int
+leafs bt = case bt of
+  BinaryLeaf _   -> 1
+  BinaryNode l r -> leafs l + leafs r
+
+balanced :: BinaryTree a -> Bool
+balanced bt = case bt of
+  BinaryLeaf _   -> True
+  BinaryNode l r -> abs (nl - nr) <= 1   where
+    nl = leafs l
+    nr = leafs r
+
+-- 8.4
+instance (Show a) => Show (BinaryTree a) where
+  show (BinaryLeaf x  ) = show x
+  show (BinaryNode l r) = "[" ++ show l ++ ":" ++ show r ++ "]"
+
+halve :: [a] -> ([a], [a])
+halve []  = ([], [])
+halve [x] = ([x], [])
+halve xs  = (take n xs, drop n xs) where
+  l = length xs
+  m = l `div` 2
+  n = l - m
+
+balance :: [a] -> BinaryTree a
+balance [x] = BinaryLeaf x
+balance xs  = BinaryNode (balance l) (balance r) where (l, r) = halve xs
