@@ -13,3 +13,14 @@ perms (x : xs) = concat (map (interleave x) (perms xs))
 
 choices :: [a] -> [[a]]
 choices xs = [zs | ys <- subs xs, zs <- perms ys]
+
+-- 9.2
+isChoice :: Eq a => [a] -> [a] -> Bool
+isChoice [] []     = True
+isChoice [_] []    = False
+isChoice [] _      = True
+isChoice (x:xs) ys = any (== x) ys && isChoice xs (removeFirst x ys)
+
+removeFirst :: Eq a => a -> [a] -> [a]
+removeFirst _ []     = []
+removeFirst x (y:ys) = if x == y then ys else y:(removeFirst x ys)
