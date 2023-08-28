@@ -24,3 +24,10 @@ isChoice (x:xs) ys = any (== x) ys && isChoice xs (removeFirst x ys)
 removeFirst :: Eq a => a -> [a] -> [a]
 removeFirst _ []     = []
 removeFirst x (y:ys) = if x == y then ys else y:(removeFirst x ys)
+
+-- 9.3
+-- Pairs with empty lists would just increase the overhead. They
+-- are fed into exprs, which justs evaluates them to another empty
+-- list, which would not evaluate to anything meaningful.
+
+-- 9.4
