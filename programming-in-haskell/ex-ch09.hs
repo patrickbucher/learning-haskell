@@ -30,4 +30,4 @@ removeFirst x (y:ys) = if x == y then ys else y:(removeFirst x ys)
 -- are fed into exprs, which justs evaluates them to another empty
 -- list, which would not evaluate to anything meaningful.
 
--- 9.4
+-- 9.4, 9.5, 9.6: TODO
