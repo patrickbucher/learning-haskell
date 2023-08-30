@@ -1,4 +1,4 @@
-import Data.Char
+import           Data.Char
 
 next :: Int -> Int
 next 1 = 2
@@ -75,4 +75,4 @@ play board player =
             play board player
 
 nim :: IO ()
-nim =  play initial 1
+nim = play initial 1
