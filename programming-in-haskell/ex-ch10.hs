@@ -64,3 +64,16 @@ adder' = do
 
 sumUp :: [Int] -> IO Int
 sumUp xs = return $ foldl (+) 0 xs
+
+-- 10.6
+readLine' :: IO String
+readLine' = do
+  c <- getChar
+  case c of
+    '\n' -> return []
+    '\DEL' -> do
+      cs <- readLine'
+      return ('\b':cs)
+    _ -> do
+      cs <- readLine'
+      return (c:cs)
