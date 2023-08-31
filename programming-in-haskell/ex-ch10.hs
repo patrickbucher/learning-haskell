@@ -29,8 +29,21 @@ putBoard' rows = sequence_ [putRow i r | (i,r) <- zip [1..] rows]
 adder :: IO ()
 adder = do
   putStr "How many numbers? "
-  -- TODO
+  n <- readInt
+  sum <- readIntsSum n 0
+  putStr $ "The total is " ++ (show sum) ++ "\n"
 
+readIntsSum :: Int -> Int -> IO Int
+readIntsSum 0 acc = return acc
+readIntsSum n acc = do
+  i <- readInt
+  readIntsSum (n-1) (acc+i)
+
+readInt :: IO Int
+readInt = do
+  line <- readLine
+  return (read line :: Int)
+  
 readLine :: IO String
 readLine = do
   c <- getChar
