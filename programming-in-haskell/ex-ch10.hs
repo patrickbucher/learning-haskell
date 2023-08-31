@@ -52,3 +52,15 @@ readLine = do
     _ -> do
       cs <- readLine
       return (c:cs)
+
+-- 10.5
+adder' :: IO ()
+adder' = do
+  putStr "How many numbers? "
+  n <- readInt
+  ns <- sequence [readInt | _ <- [1..n]]
+  sum <- sumUp ns
+  putStr $ "The total is " ++ (show sum) ++ "\n"
+
+sumUp :: [Int] -> IO Int
+sumUp xs = return $ foldl (+) 0 xs
