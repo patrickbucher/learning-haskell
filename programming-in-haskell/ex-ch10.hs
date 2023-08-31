@@ -20,7 +20,7 @@ putBoardRows [] _ = return ()
 putBoardRows (r:rs) i = do
   putRow i r
   putBoardRows rs (i+1)
-  
+
 -- 10.3
 putBoard' :: Board -> IO ()
 putBoard' rows = sequence_ [putRow i r | (i,r) <- zip [1..] rows]
@@ -43,7 +43,7 @@ readInt :: IO Int
 readInt = do
   line <- readLine
   return (read line :: Int)
-  
+
 readLine :: IO String
 readLine = do
   c <- getChar
