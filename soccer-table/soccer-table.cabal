@@ -1,0 +1,24 @@
+cabal-version:      2.4
+name:               soccer-table
+version:            0.1.0.0
+
+synopsis: converts soccer match results to leage tables
+description: Processes input files containing soccer match results of the form "[Team A] X:Y [Team B]", where X and Y denote the number of goals scored by Team A and Team B, respectively. There is one match result per line (separated by the newline character). The league table is built up and printed to standard output.
+license: MIT
+
+author:             Patrick Bucher
+maintainer:         patrick.bucher@mailbox.org
+copyright: 2023 by Patrick bucher
+extra-source-files: CHANGELOG.md
+
+executable soccer-table
+    main-is:          Main.hs
+
+    -- Modules included in this executable, other than Main.
+    -- other-modules:
+
+    -- LANGUAGE extensions used by modules in this package.
+    -- other-extensions:
+    build-depends:    base ^>=4.16.4.0, regex-base >= 0.94.0.2, regex-tdfa
+    hs-source-dirs:   app
+    default-language: Haskell2010
