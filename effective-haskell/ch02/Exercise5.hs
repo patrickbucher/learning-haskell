@@ -1,0 +1,14 @@
+-- Example (finite lists):
+--
+-- foldl (-) 0 [1,2,3]
+-- 0 - 1 - 2 - 3
+-- -6
+--
+-- foldr (-) 0 [1,2,3]
+-- 3 - (2 - (1 - 0))
+-- 2
+--
+-- foldl build the result up eagerly: (((0 - 1) - 2) - 3)
+-- foldr builds the result up lazily: 3 - (2 - (1 - 0))
+-- With foldl, the thunk is always evaluated.
+-- With foldr, evaluation of the thunk can be suspended.
