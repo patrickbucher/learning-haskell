@@ -1,13 +1,18 @@
 module Main where
 import Test.HUnit
-import SoccerTable
+import SoccerTable as ST
 
+testParseResult :: Test
 testParseResult =
   let
     raw = "1. FC Haskell 2:3 FC Curry 1918"
-    parsed = SoccerTable.parseResult raw
+    parsed = ST.parseResult raw
+    expected = ST.Result "1. FC Haskell" "FC Curry 1918" 2 3
   in
-    assertEqual "parsed correctly" parsed SoccerTable.Result "1. FC Haskell" "FC Curry 1918" 2 3
+    TestCase (assertEqual "parsed correctly" parsed expected)
 
-main :: IO ()
-main = runTestTTAndExit (TestList [TestLabel "testParseResult" testParseResult])
+tests :: Test
+tests = TestList [TestLabel "div" testParseResult]
+
+main :: IO Counts
+main = runTestTT tests
