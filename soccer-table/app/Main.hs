@@ -1,21 +1,12 @@
 module Main where
 
-import Control.Monad
-import Data.List.Split (splitOn)
+import qualified Data.Text as T
+import qualified Data.Text.IO as TIO
 import System.Environment (getArgs)
-import System.IO (openFile, hGetContents, IOMode(ReadMode))
-
 import SoccerTable (parseResult)
 
 main :: IO ()
 main = do
-  args <- getArgs
-  lines <- readLines (args !! 0)
-  print $ map parseResult lines
-
-readLines :: String -> IO [String]
-readLines path = do
-  handle <- openFile path ReadMode
-  content <- hGetContents handle
-  let lines = splitOn "\n" content
-  return $ filter (\l -> l /= "") lines
+  [file] <- getArgs
+  text <- TIO.readFile file
+  print $ take 10 $ map parseResult $ map T.unpack $ T.split (== '\n') text
