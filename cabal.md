@@ -2,6 +2,7 @@
 
 Initialize a new project interactively:
 
+    $ mkdir PROJECT_FOLDER && cd PROJECT_FOLDER
     $ cabal init --interactive
 
 Open a GHCi REPL:

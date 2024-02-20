@@ -27,7 +27,7 @@ library
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base ^>=4.16.4.0
+    build-depends:    base ^>=4.16.4.0, text
     hs-source-dirs:   src
     default-language: Haskell2010
 
@@ -52,3 +52,10 @@ test-suite haskell-in-depth-test
     hs-source-dirs:   test
     main-is:          MyLibTest.hs
     build-depends:    base ^>=4.16.4.0
+
+executable vocab1
+    main-is: vocab1.hs
+    hs-source-dirs: ch01
+    build-depends:
+        base
+      , text
