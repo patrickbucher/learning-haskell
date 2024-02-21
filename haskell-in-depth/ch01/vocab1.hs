@@ -1,8 +1,8 @@
-import Data.Char
+import Data.Char (isLetter)
 import Data.List (group, sort)
 import qualified Data.Text as T
 import qualified Data.Text.IO as TIO
-import System.Environment
+import System.Environment (getArgs)
 
 main = do
   [fname] <- getArgs

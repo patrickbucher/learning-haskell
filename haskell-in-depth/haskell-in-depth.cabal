@@ -3,42 +3,23 @@ name:               haskell-in-depth
 version:            0.1.0.0
 synopsis:           learning Haskell
 
--- A longer description of the package.
--- description:
-homepage:           github.com/patrickbucher/learning-haskell
+homepage:           https://github.com/patrickbucher/learning-haskell
 
--- A URL where users can report bugs.
--- bug-reports:
 license:            MIT
 license-file:       LICENSE
 author:             Patrick Bucher
 maintainer:         patrick.bucher@mailbox.org
 
--- A copyright notice.
--- copyright:
--- category:
 extra-source-files: CHANGELOG.md
 
 library
     exposed-modules:  MyLib
-
-    -- Modules included in this library but not exported.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
     build-depends:    base ^>=4.16.4.0, text
     hs-source-dirs:   src
     default-language: Haskell2010
 
 executable haskell-in-depth
     main-is:          Main.hs
-
-    -- Modules included in this executable, other than Main.
-    -- other-modules:
-
-    -- LANGUAGE extensions used by modules in this package.
-    -- other-extensions:
     build-depends:
         base ^>=4.16.4.0,
         haskell-in-depth
@@ -55,6 +36,13 @@ test-suite haskell-in-depth-test
 
 executable vocab1
     main-is: vocab1.hs
+    hs-source-dirs: ch01
+    build-depends:
+        base
+      , text
+
+executable vocab2
+    main-is: vocab2.hs
     hs-source-dirs: ch01
     build-depends:
         base
