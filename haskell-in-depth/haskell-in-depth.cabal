@@ -47,3 +47,11 @@ executable vocab2
     build-depends:
         base
       , text
+
+executable vocab3
+    main-is: vocab3.hs
+    hs-source-dirs: ch01
+    build-depends:
+        base
+      , text
+      , fmt
