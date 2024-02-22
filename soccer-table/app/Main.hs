@@ -9,4 +9,6 @@ main :: IO ()
 main = do
   [file] <- getArgs
   text <- TIO.readFile file
-  print $ take 10 $ concat $ map toTableRows $ map parseResult $ map T.unpack $ T.split (== '\n') text
+  let results = concat $ map toTableRows $ map parseResult $ map T.unpack $ T.split (== '\n') text
+  print $ take 10 results
+  -- TODO: use foldl to group rows by name, which creates a Data.Map
