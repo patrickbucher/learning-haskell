@@ -1,0 +1,14 @@
+-- 1+(2+3) == (1+2)+3
+--
+-- "abc" ++ ("def" ++ "ghi") == ("abc" ++ "def") ++ "ghi"
+--
+-- twice x = x * 2
+-- thrice x = x * 3
+-- square x = x ^ 2
+-- twice . (thrice . square) $ 7  == (twice . thrice) . square $ 7
+--
+-- 16 - (10 - 5) /= (16 - 10) - 5
+--
+-- addition: 0
+-- concatenation: []
+-- functional composition: id
