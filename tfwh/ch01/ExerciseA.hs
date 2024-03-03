@@ -22,3 +22,12 @@ double x = 2 * x
 -- 21
 -- sum . concat $ [[1,2,3],[4,5,6]] 
 -- 21
+
+-- sum . sort = sum
+-- true: commutative law 3+1+2 = 1+2+3
+-- check:
+-- sum [3,1,2]
+-- 6
+-- import Data.List (sort)
+-- sum . sort $ [3,1,2]
+-- 6
