@@ -1,0 +1,1 @@
+-- words . map toLower == map (map toLower) . words
