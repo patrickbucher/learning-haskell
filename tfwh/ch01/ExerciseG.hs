@@ -15,19 +15,12 @@ line1 n =
   then "One man went to mow\n"
   else capitalize (toWord n) ++ " men went to mow\n"
 
+numbers :: [String]
+numbers = ["zero", "one", "two", "three", "four", "five",
+           "six", "seven", "eight", "nine"]
+
 toWord :: Int -> String
-toWord n =
-  case n of
-    1 -> "one"
-    2 -> "two"
-    3 -> "three"
-    4 -> "four"
-    5 -> "five"
-    6 -> "six"
-    7 -> "seven"
-    8 -> "eight"
-    9 -> "nine"
-    otherwise -> ""
+toWord n = numbers !! n
 
 capitalize :: String -> String
 capitalize (h:t) = (toUpper h:t)
